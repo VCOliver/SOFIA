@@ -58,9 +58,9 @@ class dummyADS1115(object):
         noise = random.uniform(-0.1, 0.1)
         
         if channel == 0:  # Voltage channel
-            raw_value = (self.voltage + noise) * 1000  # Simulate ADC scaling
+            raw_value = (self.voltage + noise) * gain  # Simulate ADC scaling
         elif channel == 1:  # Current channel
-            raw_value = (self.current + noise) * 1000
+            raw_value = (self.current + noise) * gain
         elif channel == 2:  # Temperature channel
             # Reverse of temp formula: temp = 0.0044*raw - 6.216
             raw_value = (self.temp + noise + 6.216) / 0.0044
