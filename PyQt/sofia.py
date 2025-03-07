@@ -1,8 +1,17 @@
 # -*- coding: utf-8 -*-
+
+import os
+import sys
 from PyQt4.QtCore import pyqtSignal, QTimer
 from PyQt4.QtGui import QApplication, QMainWindow, QPushButton
 from PyQt4.QtGui import QLabel, QVBoxLayout, QWidget, QMessageBox, QDialog
 from PyQt4 import QtCore, QtGui
+
+current_dir = os.path.dirname(__file__)
+codigo_dir = os.path.abspath(os.path.join(current_dir, '..'))
+if codigo_dir not in sys.path:
+        sys.path.insert(0, codigo_dir)
+
 from mainwindow import Ui_MainWindow
 from choosingScreen import Ui_SecDialog
 from help_box import Ui_Dialog
@@ -18,8 +27,6 @@ from error_window import Ui_errorDialog
 from calibrationMenu import Ui_CalibrationDialog
 from calibracao_v3 import  Ui_autoDialog
 from calibracao_manual import Ui_manualDialog
-import os
-import sys
 import imagens2
 import pylab_plot
 import parametros
@@ -28,9 +35,13 @@ startProc = None
 #RPI_ON = True 
 RPI_ON = False
 
-# from serial_setup import Vera_Communication
-# vera_connect = Vera_Communication()
-vera_connect = None
+
+
+if RPI_ON:
+    from serial_setup import Vera_Communication
+    vera_connect = Vera_Communication()
+else:
+    vera_connect = None
 
 # Classe da tela de iniciação do SOFIA
 

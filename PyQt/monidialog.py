@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#from __future__ import division
+from __future__ import division
 from PyQt4 import QtCore, QtGui
 from xlwt import Workbook
 import sys
@@ -14,20 +14,9 @@ import PID
 import numpy as np 
 from scipy import signal
 from numpy import convolve
-#from serial_setup import Vera_Communication
 
-# import Adafruit_ADS1x15
-
-# adc = Adafruit_ADS1x15.ADS1115()
-adc = None
 
 GAIN = 2/3
-
-# import RPi.GPIO as GPIO
-# import smbus
-# #setando GPIOs utilizados
-# GPIO.setmode(GPIO.BCM)
-# GPIO.setwarnings(False)
 
 #---------------------------------------------------------------------------------------
 #configurando arquivo de log
@@ -52,12 +41,27 @@ logging.getLogger('').addHandler(console)
 RPI_ON = False 
 pause = False
 
+RELE_PIN1 = 16
 if (RPI_ON):
+    from serial_setup import Vera_Communication
+
+    import Adafruit_ADS1x15
+
+    adc = Adafruit_ADS1x15.ADS1115()
     
-    RELE_PIN1 = 16
+    import RPi.GPIO as GPIO
+    import smbus
+    #setando GPIOs utilizados
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    
     GPIO.setup(RELE_PIN1, GPIO.OUT) #Relé de Segurança
     GPIO.output(RELE_PIN1, 0)       #ajusta os reles (nível alto) - Fechando relés
-    
+else:
+    from Test.dummy import dummyGPIO, dummyADS1115
+    GPIO = dummyGPIO()
+    adc = dummyADS1115()
+    adc.set_current(1.5)
 
 #-------------------------------------------------------------------------------------
 #planilha no excel com os parametros do sistema
@@ -278,7 +282,8 @@ class Ui_moniDialog(object):
 #---------------------------------------------------------------------------------------------------------
             if cont == 500:
 
-                if(RPI_ON):
+                #if(RPI_ON):
+                if(True):
                     ADCvoltage = 0
                     ADCcurrent = 0
                     voltage_filtrada = 0
@@ -289,18 +294,18 @@ class Ui_moniDialog(object):
 
                     for x in xrange(0,10):
                         try:
-                            for var0 in range(0,15):
+                            for i in range(0,15):
                                 #Leitura de Tensão
                                 ADCvoltageTemp = adc.read_adc(0, gain=GAIN)
-                                voltage_filter[var0] = ADCvoltageTemp
+                                voltage_filter[i] = ADCvoltageTemp
                                 ADCvoltage += ADCvoltageTemp
                             callErrorWindow = False
-                            ADCvoltage = ADCvoltage/(var0+1)
+                            ADCvoltage = ADCvoltage/(i+1)
                             b, a = signal.butter(3, 0.05)
                             voltage_filter_media = signal.filtfilt(b, a, voltage_filter)
-                            for var0 in range(0,15):
-	                            voltage_filtrada += voltage_filter_media[var0]
-                            voltage_filtrada = voltage_filtrada/(var0+1)
+                            for i in range(0,15):
+	                            voltage_filtrada += voltage_filter_media[i]
+                            voltage_filtrada = voltage_filtrada/(i+1)
 
                             break #sai do for se chegar aqui
                         except Exception, e:
@@ -314,18 +319,18 @@ class Ui_moniDialog(object):
 
                     for x in xrange(0,10):
                         try:
-                            for var0 in range(0,15):
+                            for i in range(0,15):
                                 #Leitura de corrente
                                 ADCcurrentTemp = adc.read_adc(1, gain=GAIN)
-                                current_filter[var0] = ADCcurrentTemp
+                                current_filter[i] = ADCcurrentTemp
                                 ADCcurrent += ADCcurrentTemp
                             callErrorWindow = False
-                            ADCcurrent = ADCcurrent/(var0+1)
+                            ADCcurrent = ADCcurrent/(i+1)
                             b, a = signal.butter(3, 0.05)
                             current_filter_media = signal.filtfilt(b, a, current_filter)
-                            for var0 in range(0,15):
-	                            current_filtrada += current_filter_media[var0]
-                            current_filtrada = current_filtrada/(var0+1)
+                            for i in range(0,15):
+	                            current_filtrada += current_filter_media[i]
+                            current_filtrada = current_filtrada/(i+1)
 
                             break #sai do for se chegar aqui
                         except Exception, e:
@@ -340,10 +345,10 @@ class Ui_moniDialog(object):
 
                     for x in xrange(0,10):
                         try:
-                            for var0 in range(0,15): #Leitura de Temperatura
+                            for i in range(0,15): #Leitura de Temperatura
                                 temp_aux = adc.read_adc(2, gain=GAIN)
                                 temperature += temp_aux
-                            temperature = float(temperature)/(var0+1)
+                            temperature = float(temperature)/(i+1)
                             temperature = 0.0044*temperature-6.216
                             self.lcd_temp.display(temperature)
                             callErrorWindow = False
@@ -481,6 +486,10 @@ class Ui_moniDialog(object):
                     #else:
                         #print "TEMPERATURA OK!"
                         #GPIO.output(19,0)                     #DESATIVAR RELÉ DE IMPEDÂNCIA
+                    else:
+                        DAC_volts = float(actuatorValue)*5/255
+                        print "Voltage set to " + str(DAC_volts)
+                        adc.set_voltage(DAC_volts)
 
 #---------------------------------------------------------------------------------------------------
 
