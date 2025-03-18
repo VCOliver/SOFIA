@@ -55,7 +55,8 @@ class dummyADS1115(object):
 
     def read_adc(self, channel, gain=1):
         # Simulate sensor noise (0.1)
-        noise = random.uniform(-0.1, 0.1)
+        # noise = random.uniform(-0.1, 0.1)
+        noise = 0
         
         if channel == 0:  # Voltage channel
             raw_value = (self.voltage + noise) * gain  # Simulate ADC scaling

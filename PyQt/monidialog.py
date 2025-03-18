@@ -16,7 +16,7 @@ from scipy import signal
 from numpy import convolve
 
 
-GAIN = 2/3
+GAIN = 1
 
 #---------------------------------------------------------------------------------------
 #configurando arquivo de log
@@ -268,7 +268,6 @@ class Ui_moniDialog(object):
             ADCvoltage = 0
             ADCcurrent = 0
             temperature = 0
-            GAIN = 2/3
 
             GPIO.setmode(GPIO.BCM)
             GPIO.setwarnings(False)
@@ -292,70 +291,69 @@ class Ui_moniDialog(object):
                     voltage_filter=[0 for i in range(15)]
                     current_filter=[0 for i in range(15)]
 
-                    for x in xrange(0,10):
-                        try:
-                            for i in range(0,15):
-                                #Leitura de Tensão
-                                ADCvoltageTemp = adc.read_adc(0, gain=GAIN)
-                                voltage_filter[i] = ADCvoltageTemp
-                                ADCvoltage += ADCvoltageTemp
-                            callErrorWindow = False
-                            ADCvoltage = ADCvoltage/(i+1)
-                            b, a = signal.butter(3, 0.05)
-                            voltage_filter_media = signal.filtfilt(b, a, voltage_filter)
-                            for i in range(0,15):
-	                            voltage_filtrada += voltage_filter_media[i]
-                            voltage_filtrada = voltage_filtrada/(i+1)
+                    
+                    try:
+                        for i in range(0,15):
+                            #Leitura de Tensão
+                            ADCvoltageTemp = adc.read_adc(0, gain=GAIN)
+                            print "ADCvoltageTemp: " + str(ADCvoltageTemp)
+                            voltage_filter[i] = ADCvoltageTemp
+                            ADCvoltage += ADCvoltageTemp
+                        callErrorWindow = False
+                        ADCvoltage = ADCvoltage/(i+1)
+                        b, a = signal.butter(3, 0.05)
+                        voltage_filter_media = signal.filtfilt(b, a, voltage_filter) # IIR filter
+                        for i in range(0,15):
+                            voltage_filtrada += voltage_filter_media[i]
+                        voltage_filtrada = voltage_filtrada/(i+1)
 
-                            break #sai do for se chegar aqui
-                        except Exception, e:
-                            logger.error('Erro na leitura ADC Tensao', exc_info=True)
-                            callErrorWindow = True
-
+                        #break #sai do for se chegar aqui
+                    except Exception, e:
+                        logger.error('Erro na leitura ADC Tensao', exc_info=True)
+                        callErrorWindow = True
+                    print "Voltage Filtrada: " + str(voltage_filtrada)
                     if(callErrorWindow):
                         logger.error('Nao foi possivel realizar a leitura da Tensao - ADC')
                         GPIO.cleanup()
                         self.goError()
 
-                    for x in xrange(0,10):
-                        try:
-                            for i in range(0,15):
-                                #Leitura de corrente
-                                ADCcurrentTemp = adc.read_adc(1, gain=GAIN)
-                                current_filter[i] = ADCcurrentTemp
-                                ADCcurrent += ADCcurrentTemp
-                            callErrorWindow = False
-                            ADCcurrent = ADCcurrent/(i+1)
-                            b, a = signal.butter(3, 0.05)
-                            current_filter_media = signal.filtfilt(b, a, current_filter)
-                            for i in range(0,15):
-	                            current_filtrada += current_filter_media[i]
-                            current_filtrada = current_filtrada/(i+1)
+                    
+                    try:
+                        for i in range(0,15):
+                            #Leitura de corrente
+                            ADCcurrentTemp = adc.read_adc(1, gain=GAIN)
+                            current_filter[i] = ADCcurrentTemp
+                            ADCcurrent += ADCcurrentTemp
+                        callErrorWindow = False
+                        ADCcurrent = ADCcurrent/(i+1)
+                        b, a = signal.butter(3, 0.05)
+                        current_filter_media = signal.filtfilt(b, a, current_filter)
+                        for i in range(0,15):
+                            current_filtrada += current_filter_media[i]
+                        current_filtrada = current_filtrada/(i+1)
 
-                            break #sai do for se chegar aqui
-                        except Exception, e:
-                            logger.error('Erro na leitura ADC Corrente', exc_info=True)
-                            callErrorWindow = True
+                        #break #sai do for se chegar aqui
+                    except Exception, e:
+                        logger.error('Erro na leitura ADC Corrente', exc_info=True)
+                        callErrorWindow = True
 
                     if(callErrorWindow):
                         logger.error('Nao foi possivel realizar a leitura da Corrente - ADC')
                         GPIO.cleanup()
                         self.goError()
 
-
-                    for x in xrange(0,10):
-                        try:
-                            for i in range(0,15): #Leitura de Temperatura
-                                temp_aux = adc.read_adc(2, gain=GAIN)
-                                temperature += temp_aux
-                            temperature = float(temperature)/(i+1)
-                            temperature = 0.0044*temperature-6.216
-                            self.lcd_temp.display(temperature)
-                            callErrorWindow = False
-                            break #sai do for se chegar aqui
-                        except Exception, e:
-                            logger.error('Erro na leitura ADC Temperatura', exc_info=True)
-                            callErrorWindow = True
+                    try:
+                        for i in range(0,15): #Leitura de Temperatura
+                            temp_aux = adc.read_adc(2, gain=GAIN)
+                            temperature += temp_aux
+                        temperature = float(temperature)/(i+1)
+                        temperature = 0.0044*temperature-6.216
+                        self.lcd_temp.display(temperature)
+                        callErrorWindow = False
+                        #break #sai do for se chegar aqui
+                    except Exception, e:
+                        logger.error('Erro na leitura ADC Temperatura', exc_info=True)
+                        callErrorWindow = True
 
                     if(callErrorWindow):
                         logger.error('Nao foi possivel realizar a leitura da Temperatura - ADC')
