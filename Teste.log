@@ -30,3 +30,65 @@
 2025-03-14 14:36:40,559 - monidialog - INFO - Potencia RT: 10  Tempo: 5  Modo: 1
 2025-03-18 12:03:41,395 - monidialog - INFO - Operação iniciada
 2025-03-18 12:03:41,396 - monidialog - INFO - Potencia Inicial: 10  Potencia Final: 10  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 22:32:28,749 - monidialog - INFO - Operação iniciada
+2025-03-18 22:32:28,750 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 22:32:36,439 - monidialog - INFO - Operação iniciada
+2025-03-18 22:32:36,439 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 22:32:36,439 - monidialog - INFO - Operação pausada
+2025-03-18 22:32:36,439 - monidialog - INFO - Potencia RT: 5  Tempo: 5  Modo: 1
+2025-03-18 22:34:01,299 - monidialog - INFO - Operação iniciada
+2025-03-18 22:34:01,299 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 22:36:04,998 - monidialog - INFO - Operação iniciada
+2025-03-18 22:36:04,998 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 22:36:04,998 - monidialog - INFO - Operação pausada
+2025-03-18 22:36:04,998 - monidialog - INFO - Potencia RT: 5  Tempo: 5  Modo: 1
+2025-03-18 22:38:14,309 - monidialog - INFO - Operação iniciada
+2025-03-18 22:38:14,310 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 22:38:42,723 - monidialog - INFO - Operação iniciada
+2025-03-18 22:38:42,723 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 22:38:42,723 - monidialog - INFO - Operação pausada
+2025-03-18 22:38:42,723 - monidialog - INFO - Potencia RT: 5  Tempo: 5  Modo: 1
+2025-03-18 22:40:48,698 - monidialog - INFO - Operação iniciada
+2025-03-18 22:40:48,698 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 22:42:03,984 - monidialog - INFO - Operação iniciada
+2025-03-18 22:42:03,984 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 22:42:18,022 - monidialog - INFO - Operação iniciada
+2025-03-18 22:42:18,022 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 22:42:18,022 - monidialog - INFO - Operação pausada
+2025-03-18 22:42:18,022 - monidialog - INFO - Potencia RT: 5  Tempo: 10  Modo: 1
+2025-03-18 22:45:29,033 - monidialog - INFO - Operação iniciada
+2025-03-18 22:45:29,034 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 22:45:43,525 - monidialog - INFO - Operação iniciada
+2025-03-18 22:45:43,526 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 22:45:43,526 - monidialog - INFO - Operação pausada
+2025-03-18 22:45:43,526 - monidialog - INFO - Potencia RT: 5  Tempo: 10  Modo: 1
+2025-03-18 22:51:06,568 - monidialog - INFO - Operação iniciada
+2025-03-18 22:51:06,569 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 23:06:11,456 - monidialog - INFO - Operação iniciada
+2025-03-18 23:06:11,457 - monidialog - INFO - Potencia Inicial: 20  Potencia Final: 40  Step de Potencia: 5  Tempo: 10  Step de Tempo: 5  Modo: 1
+2025-03-18 23:13:48,628 - monidialog - INFO - Operação iniciada
+2025-03-18 23:13:48,628 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 23:14:05,300 - monidialog - INFO - Operação iniciada
+2025-03-18 23:14:05,300 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 23:14:05,300 - monidialog - INFO - Operação pausada
+2025-03-18 23:14:05,300 - monidialog - INFO - Potencia RT: 5  Tempo: 10  Modo: 1
+2025-03-18 23:15:09,509 - monidialog - INFO - Operação iniciada
+2025-03-18 23:15:09,509 - monidialog - INFO - Potencia Inicial: 5  Potencia Final: 5  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 23:19:10,951 - monidialog - INFO - Operação iniciada
+2025-03-18 23:19:10,951 - monidialog - INFO - Potencia Inicial: 10  Potencia Final: 10  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 23:19:48,338 - monidialog - INFO - Operação iniciada
+2025-03-18 23:19:48,338 - monidialog - INFO - Potencia Inicial: 10  Potencia Final: 10  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 23:19:48,339 - monidialog - INFO - Operação pausada
+2025-03-18 23:19:48,339 - monidialog - INFO - Potencia RT: 10  Tempo: 5  Modo: 1
+2025-03-18 23:20:26,717 - monidialog - INFO - Operação iniciada
+2025-03-18 23:20:26,718 - monidialog - INFO - Potencia Inicial: 10  Potencia Final: 10  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 23:22:48,610 - monidialog - INFO - Operação iniciada
+2025-03-18 23:22:48,610 - monidialog - INFO - Potencia Inicial: 10  Potencia Final: 10  Step de Potencia: 0.0  Tempo: 5  Step de Tempo: 2.5  Modo: 1
+2025-03-18 23:22:48,610 - monidialog - INFO - Operação pausada
+2025-03-18 23:22:48,610 - monidialog - INFO - Potencia RT: 10  Tempo: 5  Modo: 1
+2025-03-18 23:23:43,918 - monidialog - INFO - Operação iniciada
+2025-03-18 23:23:43,919 - monidialog - INFO - Potencia Inicial: 10  Potencia Final: 10  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 23:24:30,033 - monidialog - INFO - Operação iniciada
+2025-03-18 23:24:30,033 - monidialog - INFO - Potencia Inicial: 10  Potencia Final: 10  Step de Potencia: 0.0  Tempo: 10  Step de Tempo: 5.0  Modo: 1
+2025-03-18 23:24:30,034 - monidialog - INFO - Operação pausada
+2025-03-18 23:24:30,034 - monidialog - INFO - Potencia RT: 10  Tempo: 10  Modo: 1

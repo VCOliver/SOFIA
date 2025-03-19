@@ -68,7 +68,7 @@ class dummyADS1115(object):
         else:
             raw_value = 0
             
-        return int(raw_value)
+        return raw_value
 
     def set_voltage(self, voltage):
         """For testing: Manually set voltage"""

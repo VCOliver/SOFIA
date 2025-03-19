@@ -296,7 +296,6 @@ class Ui_moniDialog(object):
                         for i in range(0,15):
                             #Leitura de Tensão
                             ADCvoltageTemp = adc.read_adc(0, gain=GAIN)
-                            print "ADCvoltageTemp: " + str(ADCvoltageTemp)
                             voltage_filter[i] = ADCvoltageTemp
                             ADCvoltage += ADCvoltageTemp
                         callErrorWindow = False
@@ -367,24 +366,27 @@ class Ui_moniDialog(object):
                     #self.lcd_temp.display(temperature)
 
                     #valor de tensao estimada na carga
-                    if(parametros.todos['potenciaRT'] >= 5 and parametros.todos['potenciaRT'] <20):
-                    #5w
-                        voltage = 0.0061*voltage_filtrada + 10.008 #controller.getInterpVoltage(ADCvoltage,old_impedance)
+                    # if(parametros.todos['potenciaRT'] >= 5 and parametros.todos['potenciaRT'] <20):
+                    # #5w
+                    #     voltage = 0.0061*voltage_filtrada + 10.008 #controller.getInterpVoltage(ADCvoltage,old_impedance)
           
-                        #valor de corrente estimada na carga
-                        current = 0.00004*current_filtrada + 0.0692 #controller.getInterpCurrent(ADCcurrent,old_impedance)
+                    #     #valor de corrente estimada na carga
+                    #     current = 0.00004*current_filtrada + 0.0692 #controller.getInterpCurrent(ADCcurrent,old_impedance)
 
-                    if(parametros.todos['potenciaRT'] >= 20 and parametros.todos['potenciaRT'] <= 30):
-                        voltage = 0.0056*voltage_filtrada + 12.58 #controller.getInterpVoltage(ADCvoltage,old_impedance)
+                    # if(parametros.todos['potenciaRT'] >= 20 and parametros.todos['potenciaRT'] <= 30):
+                    #     voltage = 0.0056*voltage_filtrada + 12.58 #controller.getInterpVoltage(ADCvoltage,old_impedance)
           
-                        #valor de corrente estimada na carga
-                        current = 0.00004*current_filtrada + 0.0151
+                    #     #valor de corrente estimada na carga
+                    #     current = 0.00004*current_filtrada + 0.0151
 
-                    if(parametros.todos['potenciaRT'] > 30):
-                        voltage = 0.006*voltage_filtrada + 3.1099 #controller.getInterpVoltage(ADCvoltage,old_impedance)
+                    # if(parametros.todos['potenciaRT'] > 30):
+                    #     voltage = 0.006*voltage_filtrada + 3.1099 #controller.getInterpVoltage(ADCvoltage,old_impedance)
           
-                        #valor de corrente estimada na carga
-                        current = 0.00004*current_filtrada + 0.0125
+                    #     #valor de corrente estimada na carga
+                    #     current = 0.00004*current_filtrada + 0.0125
+                    
+                    voltage = voltage_filtrada
+                    current = current_filtrada
                     
                     print "Vera flag: " + str(parametros.flag['veraFlag'])
                     if(parametros.flag['veraFlag']):
@@ -421,7 +423,7 @@ class Ui_moniDialog(object):
                     #nova tensao a ser enviada no DAC afim de corrigir a potencia
                     #for i in range(1, END):
                     pid.update(feedback)
-                    measuredError = pid.outp
+                    measuredError = pid.error
                     absError = abs(measuredError)
                     errorBits = int(absError)
 
@@ -452,7 +454,7 @@ class Ui_moniDialog(object):
                     print "DAC: " +str(actuatorValue)
                     if (actuatorValue < 0):
                         actuatorValue = 0
-                    elif(actuatorValue>150):
+                    elif(actuatorValue>150): 
                         actuatorValue = 150
                     else:
                         pass
@@ -485,9 +487,11 @@ class Ui_moniDialog(object):
                         #print "TEMPERATURA OK!"
                         #GPIO.output(19,0)                     #DESATIVAR RELÉ DE IMPEDÂNCIA
                     else:
-                        DAC_volts = float(actuatorValue)*5/255
+                        DAC_volts = float(actuatorValue)*5/255*(40.0/2.9411)
                         print "Voltage set to " + str(DAC_volts)
                         adc.set_voltage(DAC_volts)
+                        if current > 0.1:
+                            adc.set_current(current-0.005)
 
 #---------------------------------------------------------------------------------------------------
 
